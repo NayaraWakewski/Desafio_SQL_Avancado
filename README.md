@@ -108,21 +108,21 @@ ORDER BY gasto DESC
 LIMIT 1;
 ```
 
-O comando *SELECT* indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dc.codigocliente" e "dc.nomecliente", além de calcular uma coluna adicional chamada "gasto" usando a função SUM.
+O comando **SELECT** indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dc.codigocliente" e "dc.nomecliente", além de calcular uma coluna adicional chamada "gasto" usando a função **SUM**.
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
 
-A cláusula *JOIN* é usada para combinar os dados das duas tabelas com base em uma condição. Estamos combinando a tabela "dw.fato_vendas" com a tabela "dw.dim_cliente". A condição de combinação é que o "codigocliente" seja o mesmo em ambas as tabelas.
+A cláusula **JOIN** é usada para combinar os dados das duas tabelas com base em uma condição. Estamos combinando a tabela "dw.fato_vendas" com a tabela "dw.dim_cliente". A condição de combinação é que o "codigocliente" seja o mesmo em ambas as tabelas.
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'.
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'.
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "dc.codigocliente" e "dc.nomecliente", ou seja, agrupando as vendas por cada cliente específico.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "dc.codigocliente" e "dc.nomecliente", ou seja, agrupando as vendas por cada cliente específico.
 
-A função *SUM* é usada para calcular a soma dos valores de vendas para cada cliente. Estamos multiplicando a coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda e somando os valores.
+A função **SUM** é usada para calcular a soma dos valores de vendas para cada cliente. Estamos multiplicando a coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda e somando os valores.
 
-A cláusula *ORDER BY* é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na coluna "gasto" (soma dos gastos) em ordem decrescente, ou seja, o cliente com o maior gasto será listado primeiro.
+A cláusula **ORDER BY** é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na coluna "gasto" (soma dos gastos) em ordem decrescente, ou seja, o cliente com o maior gasto será listado primeiro.
 
-A cláusula *LIMIT* é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta para retornar apenas um resultado, o cliente com o maior gasto.
+A cláusula **LIMIT** é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta para retornar apenas um resultado, o cliente com o maior gasto.
 
 
 
@@ -148,15 +148,15 @@ JOIN dw.fato_vendas fv ON v.codigovendedor = fv.codigovendedor
 WHERE fv.statusvenda = '1';
 ```
 
-O comando *SELECT* indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "d.codigodependente", "d.nomedependente" e "d.datanascimento" da tabela "dw.dim_dependente".
+O comando **SELECT** indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "d.codigodependente", "d.nomedependente" e "d.datanascimento" da tabela "dw.dim_dependente".
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.dim_dependente" e a referenciamos como "d".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.dim_dependente" e a referenciamos como "d".
 
-As cláusulas *JOIN* são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.dim_dependente" com a tabela "dw.dim_vendedor" usando a coluna "codigovendedor" como critério de correspondência. Em seguida, estamos unindo o resultado anterior com uma subconsulta (sub) e a tabela "dw.fato_vendas" novamente, ambas usando a coluna "codigovendedor" como critério de correspondência.
+As cláusulas **JOIN** são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.dim_dependente" com a tabela "dw.dim_vendedor" usando a coluna "codigovendedor" como critério de correspondência. Em seguida, estamos unindo o resultado anterior com uma subconsulta (sub) e a tabela "dw.fato_vendas" novamente, ambas usando a coluna "codigovendedor" como critério de correspondência.
 
-A *subconsulta* dentro dos parênteses é usada para calcular o valor total de vendas para cada vendedor, agrupando as vendas pelo "codigovendedor". Estamos usando a função SUM para somar o resultado da multiplicação da coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda. Em seguida, estamos filtrando apenas os resultados com um valor total de vendas maior que zero (HAVING) e classificando-os em ordem ascendente de acordo com o valor total de vendas (ORDER BY). Por fim, estamos limitando o resultado a apenas um registro usando LIMIT 1.
+A **subconsulta** dentro dos parênteses é usada para calcular o valor total de vendas para cada vendedor, agrupando as vendas pelo "codigovendedor". Estamos usando a função SUM para somar o resultado da multiplicação da coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda. Em seguida, estamos filtrando apenas os resultados com um valor total de vendas maior que zero (HAVING) e classificando-os em ordem ascendente de acordo com o valor total de vendas (ORDER BY). Por fim, estamos limitando o resultado a apenas um registro usando LIMIT 1.
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'.
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'.
 
 
 
@@ -177,19 +177,19 @@ ORDER BY quantidade_vendas ASC
 LIMIT 3;
 ```
 
-O comando *SELECT* indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dc.nomecanal", "dp.codigoproduto", "dp.nomeproduto" e contando o número de ocorrências (*) como "quantidade_vendas".
+O comando **SELECT** indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dc.nomecanal", "dp.codigoproduto", "dp.nomeproduto" e contando o número de ocorrências (*) como "quantidade_vendas".
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
 
-As cláusulas *JOIN* são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_produto" usando a coluna "codigoproduto" como critério de correspondência. Em seguida, estamos unindo o resultado anterior com a tabela "dw.dim_canal" usando a coluna "codigocanal" como critério de correspondência.
+As cláusulas **JOIN** são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_produto" usando a coluna "codigoproduto" como critério de correspondência. Em seguida, estamos unindo o resultado anterior com a tabela "dw.dim_canal" usando a coluna "codigocanal" como critério de correspondência.
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'. Além disso, estamos filtrando os resultados para incluir apenas os canais com o nome "Loja Virtual" ou "Loja Própria" (dc.nomecanal = 'Loja Virtual' OR dc.nomecanal = 'Loja Própria').
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'. Além disso, estamos filtrando os resultados para incluir apenas os canais com o nome "Loja Virtual" ou "Loja Própria" (dc.nomecanal = 'Loja Virtual' OR dc.nomecanal = 'Loja Própria').
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "dc.nomecanal", "dp.codigoproduto" e "dp.nomeproduto", ou seja, agrupando as vendas por canal e produto específico.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "dc.nomecanal", "dp.codigoproduto" e "dp.nomeproduto", ou seja, agrupando as vendas por canal e produto específico.
 
-A cláusula *ORDER BY* é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na coluna "quantidade_vendas" (contagem de vendas) em ordem crescente, ou seja, as vendas menos frequentes serão listadas primeiro.
+A cláusula **ORDER BY** é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na coluna "quantidade_vendas" (contagem de vendas) em ordem crescente, ou seja, as vendas menos frequentes serão listadas primeiro.
 
-A cláusula *LIMIT* é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta para retornar apenas 3 registros, ou seja, as 3 vendas com menor quantidade de vendas.
+A cláusula **LIMIT** é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta para retornar apenas 3 registros, ou seja, as 3 vendas com menor quantidade de vendas.
 
 
 
@@ -207,15 +207,15 @@ SELECT c.estadocliente, ROUND(SUM(fv.quantidadevendas * fv.valorunitariovendido)
 GROUP BY c.estadocliente;
 ```
 
-O comando *SELECT* indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando a coluna "c.estadocliente" (estado do cliente) e calculando uma coluna adicional chamada "gasto_medio". Usamos a função SUM para somar o resultado da multiplicação da coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda. Em seguida, usamos a função ROUND para arredondar o resultado para duas casas decimais.
+O comando **SELECT** indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando a coluna "c.estadocliente" (estado do cliente) e calculando uma coluna adicional chamada "gasto_medio". Usamos a função SUM para somar o resultado da multiplicação da coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda. Em seguida, usamos a função ROUND para arredondar o resultado para duas casas decimais.
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
 
-A cláusula *JOIN* é usada para combinar os dados de duas tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_cliente" usando a coluna "codigocliente" como critério de correspondência.
+A cláusula **JOIN** é usada para combinar os dados de duas tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_cliente" usando a coluna "codigocliente" como critério de correspondência.
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'.
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1'.
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "c.estadocliente", ou seja, agrupando as vendas por estado do cliente.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "c.estadocliente", ou seja, agrupando as vendas por estado do cliente.
 
 
 
@@ -232,13 +232,13 @@ SELECT codigovenda
 ORDER BY codigovenda ASC
 ```
 
-O comando *SELECT* indica que queremos selecionar a coluna "codigovenda" na consulta.
+O comando **SELECT** indica que queremos selecionar a coluna "codigovenda" na consulta.
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.fato_vendas".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.fato_vendas".
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem o valor "1" na coluna "deletado", ou seja, as vendas marcadas como deletadas.
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem o valor "1" na coluna "deletado", ou seja, as vendas marcadas como deletadas.
 
-A cláusula *ORDER BY* é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na coluna "codigovenda" em ordem crescente, ou seja, os códigos das vendas serão listados em ordem crescente.
+A cláusula **ORDER BY** é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na coluna "codigovenda" em ordem crescente, ou seja, os códigos das vendas serão listados em ordem crescente.
 
 
 
@@ -258,17 +258,17 @@ GROUP BY c.estadocliente, dp.nomeproduto
 ORDER BY 1, 2;
 ```
 
-O comando *SELECT* indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "c.estadocliente" (estado do cliente), "dp.nomeproduto" (nome do produto) e calculando uma coluna adicional chamada "quantidade_media". Usamos a função AVG para calcular a média da coluna "quantidadevendas" em cada venda. Em seguida, usamos a função ROUND para arredondar o resultado para quatro casas decimais.
+O comando **SELECT** indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "c.estadocliente" (estado do cliente), "dp.nomeproduto" (nome do produto) e calculando uma coluna adicional chamada "quantidade_media". Usamos a função AVG para calcular a média da coluna "quantidadevendas" em cada venda. Em seguida, usamos a função ROUND para arredondar o resultado para quatro casas decimais.
 
-As cláusulas *FROM* especificam as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv"), "dw.dim_produto" (referenciada como "dp") e "dw.dim_cliente" (referenciada como "c").
+As cláusulas **FROM** especificam as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv"), "dw.dim_produto" (referenciada como "dp") e "dw.dim_cliente" (referenciada como "c").
 
-As cláusulas *JOIN* são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_produto" usando a coluna "codigoproduto" como critério de correspondência. Em seguida, estamos unindo o resultado anterior com a tabela "dw.dim_cliente" usando a coluna "codigocliente" como critério de correspondência.
+As cláusulas **JOIN** são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_produto" usando a coluna "codigoproduto" como critério de correspondência. Em seguida, estamos unindo o resultado anterior com a tabela "dw.dim_cliente" usando a coluna "codigocliente" como critério de correspondência.
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1', ou seja, vendas com status de venda igual a '1'.
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que possuem um "statusvenda" igual a '1', ou seja, vendas com status de venda igual a '1'.
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "c.estadocliente" (estado do cliente) e pelo "dp.nomeproduto" (nome do produto), ou seja, agrupando as vendas por estado do cliente e produto.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "c.estadocliente" (estado do cliente) e pelo "dp.nomeproduto" (nome do produto), ou seja, agrupando as vendas por estado do cliente e produto.
 
-A cláusula *ORDER BY* é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados pelo "c.estadocliente" em ordem crescente (1º critério de classificação) e pelo "dp.nomeproduto" em ordem crescente (2º critério de classificação).
+A cláusula **ORDER BY** é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados pelo "c.estadocliente" em ordem crescente (1º critério de classificação) e pelo "dp.nomeproduto" em ordem crescente (2º critério de classificação).
 
 
 ## QUESTÃO 9
@@ -283,11 +283,11 @@ SELECT SUM(fv.quantidadevendas * fv.valorunitariovendido) AS receita_bruta
 	WHERE EXTRACT(YEAR FROM fv.datavenda) = EXTRACT(YEAR FROM CURRENT_DATE)
 ```
 
-O comando *SELECT* indica que queremos calcular a soma da coluna "quantidadevendas" multiplicada pela coluna "valorunitariovendido" e chamamos essa coluna calculada de "receita_bruta".
+O comando **SELECT** indica que queremos calcular a soma da coluna "quantidadevendas" multiplicada pela coluna "valorunitariovendido" e chamamos essa coluna calculada de "receita_bruta".
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
 
-A cláusula *WHERE* é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que ocorreram no mesmo ano do ano atual. Para fazer isso, usamos a função *EXTRACT* para extrair o ano da coluna "datavenda" e comparamos com o ano atual usando a função *EXTRACT com CURRENT_DATE* para obter o ano atual.
+A cláusula **WHERE** é usada para filtrar os resultados com base em uma condição. Estamos filtrando as vendas da tabela "dw.fato_vendas" para incluir apenas aquelas que ocorreram no mesmo ano do ano atual. Para fazer isso, usamos a função *EXTRACT* para extrair o ano da coluna "datavenda" e comparamos com o ano atual usando a função *EXTRACT com CURRENT_DATE* para obter o ano atual.
 
 
 ## QUESTÃO 10
@@ -303,13 +303,13 @@ SELECT c.estadocliente, EXTRACT(YEAR FROM fv.datavenda) AS ano, SUM(fv.quantidad
 GROUP BY c.estadocliente, EXTRACT(YEAR FROM fv.datavenda);
 ```
 
-O comando *SELECT* indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "c.estadocliente" (estado do cliente), "EXTRACT(YEAR FROM fv.datavenda)" (ano da venda) e calculando uma coluna adicional chamada "receita_bruta". Usamos a função SUM para somar o resultado da multiplicação da coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda.
+O comando **SELECT** indica quais colunas queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "c.estadocliente" (estado do cliente), "EXTRACT(YEAR FROM fv.datavenda)" (ano da venda) e calculando uma coluna adicional chamada "receita_bruta". Usamos a função SUM para somar o resultado da multiplicação da coluna "quantidadevendas" pela coluna "valorunitariovendido" em cada venda.
 
-As cláusulas *FROM* especificam as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv") e "dw.dim_cliente" (referenciada como "c").
+As cláusulas **FROM** especificam as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv") e "dw.dim_cliente" (referenciada como "c").
 
-As cláusulas *JOIN* são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_cliente" usando a coluna "codigocliente" como critério de correspondência.
+As cláusulas **JOIN** são usadas para combinar os dados de várias tabelas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_cliente" usando a coluna "codigocliente" como critério de correspondência.
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "c.estadocliente" (estado do cliente) e pelo *"EXTRACT(YEAR FROM fv.datavenda)* " (ano da venda), ou seja, agrupando as vendas por estado do cliente e ano.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "c.estadocliente" (estado do cliente) e pelo *"EXTRACT(YEAR FROM fv.datavenda)* " (ano da venda), ou seja, agrupando as vendas por estado do cliente e ano.
 
 
 ## QUESTÃO 11
@@ -323,11 +323,11 @@ SELECT SUM(fv.quantidadevendas * fv.valorunitariovendido) / COUNT(DISTINCT fv.co
 FROM dw.fato_vendas fv;
 ```
 
-O comando *SELECT* indica que queremos calcular a soma da coluna "quantidadevendas" multiplicada pela coluna "valorunitariovendido" e dividir pelo número de vendas distintas *(COUNT(DISTINCT fv.codigovenda))*. Chamamos essa coluna calculada de "ticket_medio".
+O comando **SELECT** indica que queremos calcular a soma da coluna "quantidadevendas" multiplicada pela coluna "valorunitariovendido" e dividir pelo número de vendas distintas *(COUNT(DISTINCT fv.codigovenda))*. Chamamos essa coluna calculada de "ticket_medio".
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.fato_vendas" e a referenciamos como "fv".
 
-A query não possui cláusula *WHERE*, o que significa que não estamos aplicando nenhum filtro nas vendas. Estamos considerando todas as vendas da tabela "dw.fato_vendas".
+A query não possui cláusula **WHERE**, o que significa que não estamos aplicando nenhum filtro nas vendas. Estamos considerando todas as vendas da tabela "dw.fato_vendas".
 
 
 
@@ -349,19 +349,19 @@ ORDER BY quantidade_vendas ASC
 LIMIT 3;
 ```
 
-A cláusula *SELECT* indica as colunas que queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dc.nomecanal" (nome do canal), "dp.codigoproduto" (código do produto), "dp.nomeproduto" (nome do produto) e calculando uma coluna adicional chamada "quantidade_vendas". A coluna "quantidade_vendas" é o resultado da função COUNT(*), que conta o número de ocorrências de cada combinação de canal, produto e nome do produto.
+A cláusula **SELECT** indica as colunas que queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dc.nomecanal" (nome do canal), "dp.codigoproduto" (código do produto), "dp.nomeproduto" (nome do produto) e calculando uma coluna adicional chamada "quantidade_vendas". A coluna "quantidade_vendas" é o resultado da função COUNT(*), que conta o número de ocorrências de cada combinação de canal, produto e nome do produto.
 
-A cláusula *FROM* especifica as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv"), "dw.dim_produto" (referenciada como "dp") e "dw.dim_canal" (referenciada como "dc"). Essas tabelas estão sendo unidas usando as cláusulas JOIN.
+A cláusula **FROM** especifica as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv"), "dw.dim_produto" (referenciada como "dp") e "dw.dim_canal" (referenciada como "dc"). Essas tabelas estão sendo unidas usando as cláusulas JOIN.
 
-As cláusulas *JOIN* são usadas para combinar os dados de várias tabelas com base em condições específicas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_produto" usando a coluna "codigoproduto" como critério de correspondência, e também unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_canal" usando a coluna "codigocanal" como critério de correspondência.
+As cláusulas **JOIN** são usadas para combinar os dados de várias tabelas com base em condições específicas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_produto" usando a coluna "codigoproduto" como critério de correspondência, e também unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_canal" usando a coluna "codigocanal" como critério de correspondência.
 
-A cláusula *WHERE* é usada para aplicar condições de filtragem aos dados. Neste caso, estamos filtrando apenas as vendas com "statusvenda" igual a '1' e o "nomecanal" igual a 'Loja Virtual' ou 'Loja Própria'.
+A cláusula **WHERE** é usada para aplicar condições de filtragem aos dados. Neste caso, estamos filtrando apenas as vendas com "statusvenda" igual a '1' e o "nomecanal" igual a 'Loja Virtual' ou 'Loja Própria'.
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "nomecanal", "codigoproduto" e "nomeproduto". Isso nos permite obter a contagem de vendas para cada combinação única de canal, produto e nome do produto.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "nomecanal", "codigoproduto" e "nomeproduto". Isso nos permite obter a contagem de vendas para cada combinação única de canal, produto e nome do produto.
 
-A cláusula *ORDER BY* é usada para ordenar os resultados em ordem crescente. Estamos ordenando os resultados pela coluna "quantidade_vendas" em ordem ascendente.
+A cláusula **ORDER BY** é usada para ordenar os resultados em ordem crescente. Estamos ordenando os resultados pela coluna "quantidade_vendas" em ordem ascendente.
 
-A cláusula *LIMIT* é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta a retornar apenas os 3 produtos com menor quantidade de vendas.
+A cláusula **LIMIT** é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta a retornar apenas os 3 produtos com menor quantidade de vendas.
 
 
 ## QUESTÃO 13
@@ -376,11 +376,11 @@ SELECT TRIM(v.nomevendedor) AS nome_vendedor,
 FROM dw.dim_vendedor v;
 ```
 
-A cláusula *SELECT* indica as colunas que queremos selecionar na consulta. Neste caso, estamos selecionando a coluna *"TRIM(v.nomevendedor) AS nome_vendedor"*, que retorna o nome do vendedor sem espaços em branco no início ou no final. Também estamos selecionando uma subconsulta dentro do SELECT, que conta o número de dependentes para cada vendedor usando a cláusula *"(SELECT COUNT(*)* FROM dw.dim_dependente d WHERE d.codigovendedor = v.codigovendedor) AS quantidade_dependentes".
+A cláusula **SELECT** indica as colunas que queremos selecionar na consulta. Neste caso, estamos selecionando a coluna *"TRIM(v.nomevendedor) AS nome_vendedor"*, que retorna o nome do vendedor sem espaços em branco no início ou no final. Também estamos selecionando uma subconsulta dentro do SELECT, que conta o número de dependentes para cada vendedor usando a cláusula **"(SELECT COUNT(*)** FROM dw.dim_dependente d WHERE d.codigovendedor = v.codigovendedor) AS quantidade_dependentes".
 
-A cláusula *FROM* especifica a tabela principal da consulta, que é "dw.dim_vendedor" (referenciada como "v"). Estamos consultando a tabela de vendedores para obter informações sobre cada vendedor.
+A cláusula **FROM** especifica a tabela principal da consulta, que é "dw.dim_vendedor" (referenciada como "v"). Estamos consultando a tabela de vendedores para obter informações sobre cada vendedor.
 
-A subconsulta *"(SELECT COUNT(*) FROM* dw.dim_dependente d WHERE d.codigovendedor = v.codigovendedor)" é usada para contar o número de dependentes para cada vendedor. A subconsulta está relacionando a tabela de dependentes (dw.dim_dependente) com a tabela de vendedores (dw.dim_vendedor) usando a coluna "codigovendedor" como critério de correspondência.
+A subconsulta **"(SELECT COUNT(*) FROM** dw.dim_dependente d WHERE d.codigovendedor = v.codigovendedor)" é usada para contar o número de dependentes para cada vendedor. A subconsulta está relacionando a tabela de dependentes (dw.dim_dependente) com a tabela de vendedores (dw.dim_vendedor) usando a coluna "codigovendedor" como critério de correspondência.
 
 O resultado da subconsulta é retornado como a coluna "quantidade_dependentes" na consulta principal. Essa coluna mostra a quantidade de dependentes para cada vendedor.
 
@@ -408,15 +408,15 @@ GROUP BY dv.nomevendedor, dv.percentualcomissao
 ORDER BY comissao DESC;
 ```
 
-A cláusula *SELECT* indica as colunas que queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dv.nomevendedor" (nome do vendedor), "SUM(fv.quantidadevendas * fv.valorunitariovendido) AS valor_total_vendas" (o valor total das vendas para cada vendedor), "dv.percentualcomissao" (o percentual de comissão do vendedor) e "ROUND(SUM(fv.quantidadevendas * fv.valorunitariovendido) * dv.percentualcomissao, 2) AS comissao" (o valor da comissão correspondente ao valor total das vendas multiplicado pelo percentual de comissão).
+A cláusula **SELECT** indica as colunas que queremos selecionar na consulta. Neste caso, estamos selecionando as colunas "dv.nomevendedor" (nome do vendedor), "SUM(fv.quantidadevendas * fv.valorunitariovendido) AS valor_total_vendas" (o valor total das vendas para cada vendedor), "dv.percentualcomissao" (o percentual de comissão do vendedor) e "ROUND(SUM(fv.quantidadevendas * fv.valorunitariovendido) * dv.percentualcomissao, 2) AS comissao" (o valor da comissão correspondente ao valor total das vendas multiplicado pelo percentual de comissão).
 
-A cláusula *FROM* especifica as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv") e "dw.dim_vendedor" (referenciada como "dv"). Estamos unindo as tabelas de vendas e vendedores usando a cláusula *JOIN*.
+A cláusula **FROM** especifica as tabelas principais da consulta, que são "dw.fato_vendas" (referenciada como "fv") e "dw.dim_vendedor" (referenciada como "dv"). Estamos unindo as tabelas de vendas e vendedores usando a cláusula **JOIN**.
 
-As cláusulas *JOIN* são usadas para combinar os dados de várias tabelas com base em condições específicas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_vendedor" usando a coluna "codigovendedor" como critério de correspondência.
+As cláusulas **JOIN** são usadas para combinar os dados de várias tabelas com base em condições específicas. Estamos unindo a tabela "dw.fato_vendas" com a tabela "dw.dim_vendedor" usando a coluna "codigovendedor" como critério de correspondência.
 
-A cláusula *GROUP BY* é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "dv.nomevendedor" (nome do vendedor) e "dv.percentualcomissao" (percentual de comissão). Isso nos permite calcular o valor total de vendas e a comissão para cada vendedor.
+A cláusula **GROUP BY** é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "dv.nomevendedor" (nome do vendedor) e "dv.percentualcomissao" (percentual de comissão). Isso nos permite calcular o valor total de vendas e a comissão para cada vendedor.
 
-A cláusula *ORDER BY* é usada para ordenar os resultados em ordem decrescente com base na coluna "comissao" (valor da comissão). Os vendedores serão listados em ordem decrescente de acordo com o valor da comissão.
+A cláusula **ORDER BY** é usada para ordenar os resultados em ordem decrescente com base na coluna "comissao" (valor da comissão). Os vendedores serão listados em ordem decrescente de acordo com o valor da comissão.
 
 
 ## Autora
