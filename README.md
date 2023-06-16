@@ -27,7 +27,8 @@ SELECT * FROM dw.dim_canal;
 
 ### Passo a passo na resolução das questões.
 
-QUESTÃO 1- --Apresente uma Query para listar o código e o nome do vendedor com maior número de vendas (contagem), e que estas vendas estejam com status concluída. As colunas presentes no resultado devem ser, portanto codigo vendedor e nome vendedor.
+##QUESTÃO 1-
+Apresente uma Query para listar o código e o nome do vendedor com maior número de vendas (contagem), e que estas vendas estejam com status concluída. As colunas presentes no resultado devem ser, portanto codigo vendedor e nome vendedor.
 
 Execute a seguinte consulta para obter o resultado:
 
