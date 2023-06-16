@@ -7,4 +7,4 @@
     SELECT * FROM dw.dim_cliente;
     SELECT * FROM dw.dim_dependente;
     SELECT * FROM dw.dim_canal;
-    ```
+    
