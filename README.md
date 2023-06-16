@@ -1,33 +1,60 @@
-# Desafio_SQL_Avancado
+# Desafio Sala de Aula - SQL Avançado
+
+Este repositório contém as soluções em SQL para o Desafio Sala de Aula - SQL Avançado. O desafio consiste em responder a uma série de questões utilizando consultas SQL avançadas em um banco de dados fictício de vendas.
+
+## Pré-requisitos
+
+- Banco de dados relacional com suporte a consultas SQL.
+
+## Passo a passo
+
+Siga os passos abaixo para obter as respostas para cada uma das questões do desafio.
+Observação: As consultas SQL acima devem ser executadas em um ambiente adequado, como um cliente de banco de dados ou uma IDE SQL.
+
+### Consultando as colunas das tabelas
+
+Execute as seguintes consultas para verificar a estrutura e as colunas das tabelas envolvidas nas questões:
 
 ```sql
-    SELECT * FROM dw.fato_vendas;
-    SELECT * FROM dw.dim_vendedor;
-    SELECT * FROM dw.dim_produto;
-    SELECT * FROM dw.dim_cliente;
-    SELECT * FROM dw.dim_dependente;
-    SELECT * FROM dw.dim_canal;
-    
- Nesse código SQL, temos uma consulta que busca informações sobre o vendedor com o maior número de vendas em uma tabela chamada "dw.fato_vendas" e sua correspondente tabela de dimensão "dw.dim_vendedor". Vamos analisar cada função presente no código:
+SELECT * FROM dw.fato_vendas;
+SELECT * FROM dw.dim_vendedor;
+SELECT * FROM dw.dim_produto;
+SELECT * FROM dw.dim_cliente;
+SELECT * FROM dw.dim_dependente;
+SELECT * FROM dw.dim_canal;
 
-1. **SELECT**: É a cláusula que especifica quais colunas serão retornadas na consulta. Nesse caso, seleciona-se as colunas "fv.codigovendedor" e "dv.nomevendedor".
+```
 
-2. **FROM**: Indica a tabela principal da consulta. Aqui, a tabela principal é "dw.fato_vendas" e é representada pela abreviação "fv".
+### Passo a passo na resolução das questões.
 
-3. **JOIN**: É a cláusula utilizada para combinar linhas de duas ou mais tabelas com base em uma coluna relacionada. Nesse caso, está sendo feito um join entre as tabelas "dw.fato_vendas" e "dw.dim_vendedor" usando a coluna "codigovendedor" como critério de junção.
+QUESTÃO 1- --Apresente uma Query para listar o código e o nome do vendedor com maior número de vendas (contagem), e que estas vendas estejam com status concluída. As colunas presentes no resultado devem ser, portanto codigo vendedor e nome vendedor.
 
-4. **ON**: Define a condição de junção entre as tabelas. Aqui, especifica-se que a coluna "codigovendedor" das duas tabelas deve ser igual para que as linhas sejam combinadas.
+Execute a seguinte consulta para obter o resultado:
 
-5. **WHERE**: É uma cláusula opcional que permite filtrar as linhas retornadas pela consulta com base em uma ou mais condições. Nesse caso, a condição é que o campo "statusvenda" na tabela "dw.fato_vendas" seja igual a '1'.
+```sql
+SELECT fv.codigovendedor , dv.nomevendedor
+    FROM dw.fato_vendas fv
+    JOIN dw.dim_vendedor dv ON fv.codigovendedor = dv.codigovendedor
+    WHERE fv.statusvenda = '1'
+GROUP BY fv.codigovendedor , dv.nomevendedor
+ORDER BY COUNT (*) DESC
+LIMIT 1; ----limita o resultado a apenas 1 vendedor-----
 
-6. **GROUP BY**: É utilizado para agrupar as linhas resultantes da consulta com base em uma ou mais colunas. Aqui, agrupa-se as linhas pelo "codigovendedor" e "nomevendedor".
+```
+O comando ##SELECT indica quais colunas queremos selecionar na consulta. Nesse caso, estamos selecionando as colunas "codigovendedor" 
+da tabela de vendas e "nomevendedor" da tabela de vendedores.
 
-7. **ORDER BY**: Ordena as linhas resultantes da consulta com base em uma ou mais colunas. Neste caso, as linhas são ordenadas em ordem decrescente com base na contagem de registros (*COUNT(*)*) de cada grupo.
+A cláusula ##FROM especifica a tabela principal da consulta, que é "fato_vendas" neste caso.
 
-8. **DESC**: Indica que a ordenação é feita em ordem decrescente. O padrão é a ordenação em ordem crescente.
+A cláusula ##JOIN é usada para combinar os dados das duas tabelas com base em uma condição. 
+Estamos combinando as tabelas "fato_vendas" e "dim_vendedor" usando a coluna "codigovendedor" como critério de correspondência.
 
-9. **LIMIT**: Limita o número de linhas retornadas pela consulta. Nesse caso, limita-se a apenas uma linha, ou seja, o registro com o maior número de vendas.
+A cláusula ##WHERE é usada para filtrar os resultados com base em uma condição. Neste caso, estamos filtrando apenas as vendas que têm um "statusvenda" igual a '1'.
 
-Portanto, o resultado dessa consulta será uma única linha contendo o código e o nome do vendedor que possui o maior número de vendas (com status '1') na tabela "dw.fato_vendas".
+A cláusula ##GROUP BY é usada para agrupar os resultados com base em uma ou mais colunas. Estamos agrupando os resultados pelo "codigovendedor" e "nomevendedor".
+
+A cláusula ##ORDER BY é usada para classificar os resultados em ordem ascendente ou descendente. Estamos classificando os resultados com base na contagem (*) em ordem decrescente.
+
+A cláusula ##LIMIT é usada para limitar o número de resultados retornados pela consulta. Neste caso, estamos limitando a consulta para retornar apenas o vendedor com a contagem mais alta (o primeiro resultado).
 
     
